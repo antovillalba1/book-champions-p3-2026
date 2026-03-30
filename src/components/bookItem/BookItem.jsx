@@ -7,12 +7,14 @@ const BookItem = ({
   pageCount,
   imageUrl,
   available,
+  onSelectedBook,
 }) => {
   const [newTitle, setNewTitle] = useState(title);
 
   const handleClick = () => {
-    setNewTitle("Actualizado");
+    setNewTitle(newTitle);
     console.log(newTitle);
+    onSelectedBook(newTitle);
   };
 
   return (
@@ -36,7 +38,7 @@ const BookItem = ({
           {rating} estrella {rating > 1 ? "s" : ""}
         </div>
         <p>{pageCount} páginas</p>
-        <Button onClick={handleClick}>Actualizar titulo</Button>
+        <Button onClick={handleClick}>Seleccionar libro</Button>
       </Card.Body>
     </Card>
   );
