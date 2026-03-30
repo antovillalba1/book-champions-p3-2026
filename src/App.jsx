@@ -52,11 +52,18 @@ function App() {
         "En un mundo gobernado por un régimen totalitario, un hombre lucha contra la vigilancia constante y la manipulación de la verdad.",
     },
   ];
+  const handleBookAdded = (enteredBook) => {
+    const bookData = {
+      ...enteredBook,
+      id: Math.random(),
+    };
+    console.log(bookData);
+  };
   return (
     <div className="d-flex flex-column align-items-center">
       <h2>Books champion app</h2>
       <p>¡Quiero leer libros!</p>
-      <NewBook />
+      <NewBook onBookAdded={handleBookAdded} />
       <Books books={books} />
     </div>
   );

@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Button, Card, Col, Form, Row } from "react-bootstrap";
 
-const NewBook = () => {
+const NewBook = ({ onBookAdded }) => {
   const [title, setTitle] = useState("");
   const [author, setAuthor] = useState("");
   const [rating, setRating] = useState("");
@@ -40,7 +40,13 @@ const NewBook = () => {
       imageUrl,
       available,
     };
-    console.log(bookData);
+    onBookAdded(bookData);
+    setTitle("");
+    setAuthor("");
+    setRating("");
+    setPageCount("");
+    setImageUrl("");
+    setAvailable(false);
   };
 
   return (
@@ -55,6 +61,7 @@ const NewBook = () => {
                   type="text"
                   placeholder="Ingresar título"
                   onChange={handleChangeTitle}
+                  value={title}
                 />
               </Form.Group>
             </Col>
@@ -65,6 +72,7 @@ const NewBook = () => {
                   type="text"
                   placeholder="Ingresar autor"
                   onChange={handleChangeAuthor}
+                  value={author}
                 />
               </Form.Group>
             </Col>
@@ -79,6 +87,7 @@ const NewBook = () => {
                   max={5}
                   min={0}
                   onChange={handleChangeRating}
+                  value={rating}
                 />
               </Form.Group>
             </Col>
@@ -90,6 +99,7 @@ const NewBook = () => {
                   placeholder="Ingresar cantidad de páginas"
                   min={1}
                   onChange={handleChangePageCount}
+                  value={pageCount}
                 />
               </Form.Group>
             </Col>
@@ -101,6 +111,7 @@ const NewBook = () => {
                 type="text"
                 placeholder="Ingresar url de imagen"
                 onChange={handleChangeImageUrl}
+                value={imageUrl}
               />
             </Form.Group>
           </Row>
@@ -115,6 +126,7 @@ const NewBook = () => {
                 className="mb-3"
                 label="¿Disponible?"
                 onChange={handleChangeAvailable}
+                checked={available}
               />
               <Button variant="primary" type="submit">
                 Agregar lectura
