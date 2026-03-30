@@ -1,6 +1,7 @@
 import BookItem from "./components/bookItem/BookItem";
 import NewBook from "./components/newBook/NewBook";
 import Books from "./components/books/Books";
+import { useState } from "react";
 function App() {
   const books = [
     {
@@ -52,19 +53,23 @@ function App() {
         "En un mundo gobernado por un régimen totalitario, un hombre lucha contra la vigilancia constante y la manipulación de la verdad.",
     },
   ];
+  const [bookList, setBookList] = useState(books);
   const handleBookAdded = (enteredBook) => {
     const bookData = {
       ...enteredBook,
       id: Math.random(),
     };
-    console.log(bookData);
+    setBookList(function (prevBookList) {
+      return [bookData, ...prevBookList];
+    });
   };
+
   return (
     <div className="d-flex flex-column align-items-center">
       <h2>Books champion app</h2>
       <p>¡Quiero leer libros!</p>
       <NewBook onBookAdded={handleBookAdded} />
-      <Books books={books} />
+      <Books books={bookList} />
     </div>
   );
 }
