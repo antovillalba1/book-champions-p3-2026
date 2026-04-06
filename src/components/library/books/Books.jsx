@@ -2,7 +2,7 @@ import BookItem from "../bookItem/BookItem";
 import { useState } from "react";
 import BookSearch from "../booksSearch/BooksSearch";
 
-const Books = ({ books }) => {
+const Books = ({ books, onBookDeleted }) => {
   const [selectedBook, setSelectedBook] = useState("");
   const [bookSearch, setBookSearch] = useState("");
   const handleBookSearch = (book) => {
@@ -24,6 +24,7 @@ const Books = ({ books }) => {
         {booksToShow.length > 0 ? (
           booksToShow.map((book) => (
             <BookItem
+              id={book.id}
               key={book.id}
               title={book.title}
               author={book.author}
@@ -32,6 +33,7 @@ const Books = ({ books }) => {
               imageUrl={book.imageUrl}
               available={book.available}
               onSelectedBook={setSelectedBook}
+              onBookDeleted={onBookDeleted}
             />
           ))
         ) : (

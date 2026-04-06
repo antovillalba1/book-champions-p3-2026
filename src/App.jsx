@@ -65,13 +65,19 @@ function App() {
     });
   };
 
+  const handleBookDeleted = (bookId) => {
+    setBookList((prevBookList) =>
+      prevBookList.filter((book) => book.id !== bookId)
+    );
+  };
+
   return (
     <div className="d-flex flex-column align-items-center">
-      {/* <h2>Books champion app</h2>
+      <h2>Books champion app</h2>
       <p>¡Quiero leer libros!</p>
       <NewBook onBookAdded={handleBookAdded} />
-      <Books books={bookList} /> */}
-      <Login />
+      <Books books={bookList} onBookDeleted={handleBookDeleted} />
+      {/* <Login /> */}
     </div>
   );
 }
